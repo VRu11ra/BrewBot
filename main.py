@@ -1,33 +1,18 @@
-import discord
-import youtube_dl
 import asyncio
 import os
-import pdb
+
+import discord
+import youtube_dl
+#import redis
 from discord.ext import commands
 
 token = os.environ["brewbot_token"]
-
-#class MyClient(discord.Client):
-#    async def on_ready(self):
-#        print('Logged on as', self.user)
-#
-#    async def on_message(self, message):
-#        # don't respond to ourselves
-#        if message.author == self.user:
-#            return
-
-#        if message.content == 'ping':
-#            await message.channel.send('pong')
-
-
-
-
-#client = MyClient()
-#client.run(token)
-
-# Bot Example
-
 bot = commands.Bot(command_prefix='?')
+initial_extensions = ['cogs.sanitization']
+
+#if __name__ == '__main__':
+#    for extension in initial_extensions:
+#        bot.load_extension(extension)
 
 @bot.command()
 async def ping(ctx):
@@ -41,12 +26,23 @@ async def on_ready():
 async def voice(ctx):
     channel = ctx.author.voice.channel
     voiceClient = await channel.connect()
-    player = voiceClient.play(discord.FFmpegPCMAudio('./yas.mp4'))
-    url = "https://youtu.be/Q0o8H7oDHB0"
-#    youtube_dl.
+    wait(20000)
+#    player = voiceClient.play(discord.FFmpegPCMAudio('./yas.mp4'))
+#    voiceClient.play(discord.FFmpegPCMAudio('spikes.webm'))
+#
+#    queue = ['https://youtu.be/Q0o8H7oDHB0']
+#    ydl_opts = {'outtmpl':'-'}
+#    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+#        player = voiceClient.play(
+#            discord.FFmpegPCMAudio(
+#                ydl.download(queue), pipe=True
+#            )
+#        )
+
+#@bot.event
+#async def on_message(message):
+#    print("this is the first instance: "+str(message.author.id))
+
+
 
 bot.run(token)
-
-
-#    while not voiceClient.is_playing():
-#        await voiceClient.disconnect()

@@ -1,0 +1,18 @@
+* How do I stream directly to media player?
+you will first need to tell youtube-dl to stream media to stdout with -o -, and
+also tell your media player to readfrom stdin (it must be capable of this for
+streaming) and the pipe former to latter. For example, streaming to vlc can be
+achieved with 
+
+youtube-dl -o - "https..." | vlc -
+* Man page
+     -o,                                                 --output
+     TEMPLATENUMBERFILEFILEDIRENCODINGUAURLFIELD:VALUE:\[aq].
+          You can use this option multiple times
+* testing
+  #+begin_src python
+    import youtube_dl
+
+    ydl_opts = {'outtmpl':'-'}                                                                             
+    ydl = youtube_dl.YoutubeDL(ydl_opts)                                                                   
+  #+end_src
